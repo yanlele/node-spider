@@ -27,26 +27,29 @@ var run = function () { return tslib_1.__awaiter(_this, void 0, void 0, function
                 return [4, page.goto('https://www.baidu.com/')];
             case 4:
                 _a.sent();
-                return [4, page.type('#kw', 'puppeteer')];
+                return [4, page.waitForNavigation()];
             case 5:
                 _a.sent();
-                return [4, page.click('#su')];
+                return [4, page.type('#kw', 'puppeteer')];
             case 6:
                 _a.sent();
-                return [4, page.waitFor(1000)];
+                return [4, page.click('#su')];
             case 7:
+                _a.sent();
+                return [4, page.waitFor(1000)];
+            case 8:
                 _a.sent();
                 return [4, page.evaluate(function () {
                         return document.querySelectorAll('.c-container a')[1].innerHTML;
                     })];
-            case 8:
+            case 9:
                 targetLink = _a.sent();
                 console.log(targetLink);
                 return [4, page.waitFor(1000)];
-            case 9:
+            case 10:
                 _a.sent();
                 return [4, browser.close()];
-            case 10:
+            case 11:
                 _a.sent();
                 return [2];
         }
