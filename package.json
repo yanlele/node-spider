@@ -14,13 +14,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cheerio": "^0.22.11",
     "@types/node": "^11.12.2",
     "@types/puppeteer": "^1.12.3",
+    "cheerio": "^1.0.0-rc.2",
     "commitizen": "^3.0.7",
     "cz-conventional-changelog": "^2.1.0",
     "tsconfig": "^5.0.3",
+    "tslint": "^5.15.0",
     "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.4.1"
+    "typescript": "3.3",
+    "user-agents": "^1.0.215"
   },
   "dependencies": {
     "puppeteer": "^1.14.0"
