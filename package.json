@@ -1,0 +1,21 @@
+{
+  "name": "spider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc --config=tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.12.2",
+    "@types/puppeteer": "^1.12.3",
+    "tsconfig": "^5.0.3",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.4.1"
+  },
+  "dependencies": {
+    "puppeteer": "^1.14.0"
+  }
+}

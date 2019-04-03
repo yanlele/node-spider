@@ -1,0 +1,58 @@
+{
+  "defaultSeverity": "error",
+  "jsRules": {},
+  "rules": {
+    "jsx-no-multiline-js": false,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "no-console": [
+      true,
+      "warn"
+    ],
+    "no-unused-expression": [
+      true,
+      "allow-fast-null-checks"
+    ],
+    "variable-name": [
+      true,
+      "allow-snake-case",
+      "allow-pascal-case"
+    ],
+    "only-arrow-functions": [
+      true,
+      "allow-declarations",
+      "allow-named-functions"
+    ],
+    "member-access": false,
+    "no-unused-variable": true,
+    "interface-name": false,
+    "import-name": false,
+    "ter-arrow-parens": [
+      true,
+      "as-needed"
+    ],
+    "object-literal-sort-keys": false,
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods"
+    ],
+    "no-trailing-whitespace": [
+      true,
+      "ignore-blank-lines"
+    ],
+    "align": false,
+    "array-type": [
+      true,
+      "array"
+    ],
+    "max-line-length": [
+      true,
+      120
+    ]
+  },
+  "rulesDirectory": []
+}
