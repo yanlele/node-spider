@@ -1,16 +1,33 @@
 import {Browser, launch, Page} from 'puppeteer';
 import * as UserAgent from 'user-agents';
-import { load } from 'cheerio';
+import {load} from 'cheerio';
+import {writeFile, readFileSync} from 'fs';
+import {resolve} from 'path';
 
 class CSDNPage {
   private page: Page;
   private browser: Browser;
   private readonly userAgent: string;
+  private readonly filePath: string;
 
   constructor() {
     this.page = null;
     this.browser = null;
-    this.userAgent = new UserAgent().toString();
+    this.filePath = resolve(__dirname, './csdnPage.html')
+    this.userAgent = new UserAgent({
+      deviceCategory: 'desktop'
+    }).toString();
+  }
+
+  file() {
+    let fileData: string = '';
+    try {
+      fileData = readFileSync(this.filePath, 'utf8');
+      console.log(fileData);
+      console.log('处理filData');
+    } catch (e) {
+      this.main();
+    }
   }
 
   async main() {
@@ -34,14 +51,11 @@ class CSDNPage {
     const $ = load(htmlString);
     const a: any = $('body > div.main-container > div.con-l > div.search-list-con > dl.J_search > dt > div > a');
 
-    console.log(typeof a);
-    a.each((index, element) => {
-      console.log($(element).find('em').text());
-    });
+    writeFile(this.filePath, a, 'utf8', () => console.log('success'));
 
     await this.browser.close();
   }
 }
 
 const login: CSDNPage = new CSDNPage();
-login.main();
+login.file();
