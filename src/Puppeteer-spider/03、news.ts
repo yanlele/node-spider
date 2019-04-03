@@ -1,4 +1,6 @@
 import {load} from 'cheerio';
+import {writeFile} from 'fs';
+import {resolve} from 'path';
 import {launch, Page} from 'puppeteer';
 import * as UserAgent from 'user-agents';
 
@@ -15,7 +17,7 @@ const hotNews: INew[] = [];
 const main = async () => {
   const browser = await launch({
     timeout: 15000,
-    headless: false,
+    headless: true,
     devtools: false,
     slowMo: 100,
     ignoreHTTPSErrors: true
@@ -24,15 +26,13 @@ const main = async () => {
   await page.setUserAgent(userAgent.toString());
   await page.goto('http://news.baidu.com/');
   await page.waitForSelector('div#local_news');
-  const htmlStr: string = await page.evaluate(() => {
-    return document.body.innerHTML;
-  });
+  const htmlStr: string = await page.evaluate(() => document.body.innerHTML);
   const $ = load(htmlStr);
   // 本地新闻
-  $('ul#localnews-focus li a').each((index, ele) => {
+  $('ul#localnews-focus li a').each((index, item) => {
     const news: INew = {
-      title: $(ele).text(),
-      href: $(ele).attr('href'),
+      title: $(item).text(),
+      href: $(item).attr('href'),
     };
     localNews.push(news);
   });
@@ -57,6 +57,14 @@ const main = async () => {
 
   console.log('hotNews', hotNews);
   console.log('localNews', localNews);
+
+  writeFile(resolve(__dirname, 'news.json'), JSON.stringify({
+    hotNews,
+    localNews,
+  }, undefined, 4), 'utf8', () => {
+    console.log('文件保存成功');
+  });
+
   await browser.close();
 };
 
