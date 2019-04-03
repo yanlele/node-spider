@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc --config=tsconfig.json"
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^11.12.2",
     "@types/puppeteer": "^1.12.3",
+    "commitizen": "^3.0.7",
+    "cz-conventional-changelog": "^2.1.0",
     "tsconfig": "^5.0.3",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.4.1"
