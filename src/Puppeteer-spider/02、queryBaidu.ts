@@ -1,5 +1,6 @@
 import {launch} from 'puppeteer';
 import * as UserAgent from 'user-agents';
+
 const userAgent = new UserAgent();
 
 const run = async () => {

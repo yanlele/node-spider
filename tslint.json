@@ -48,6 +48,7 @@
     "ordered-imports": false,
     "space-before-function-paren": false,
     "object-curly-spacing": false,
+    "trailing-comma": true,
     "align": false,
     "array-type": [
       true,
