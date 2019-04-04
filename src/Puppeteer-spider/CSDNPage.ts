@@ -28,8 +28,11 @@ class CSDNPage {
 
       const dlList = $('div.main-container > div.con-l > div.search-list-con > dl');
       dlList.each((index, element) => {
-        console.log('title', $(element).find('dt > div > a:nth-child(1)').text());
-        console.log('url', $(element).find('dt > div > a:nth-child(1)').attr('href'));
+        if ($(element).find('dt > span.flag_icon').text() === '博客') {
+          console.log('title', $(element).find('dt > div > a:nth-child(1)').text());
+          console.log('url', $(element).find('dt > div > a:nth-child(1)').attr('href'));
+          console.log('span', $(element).find('dt > span.flag_icon').text());
+        }
       });
     } catch (e) {
       this.main();
