@@ -1,5 +1,6 @@
 {
   "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-standard"],
   "jsRules": {},
   "rules": {
     "jsx-no-multiline-js": false,
@@ -44,6 +45,9 @@
       true,
       "ignore-blank-lines"
     ],
+    "ordered-imports": false,
+    "space-before-function-paren": false,
+    "object-curly-spacing": false,
     "align": false,
     "array-type": [
       true,

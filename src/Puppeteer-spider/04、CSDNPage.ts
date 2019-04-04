@@ -1,4 +1,4 @@
-import {Browser, launch, Page} from 'puppeteer';
+import {Browser, launch, Page, Request} from 'puppeteer';
 import * as UserAgent from 'user-agents';
 import {load} from 'cheerio';
 import {writeFile, readFileSync} from 'fs';
@@ -62,15 +62,16 @@ class CSDNPage {
     * 让浏览器误认为没有加载完成
     * */
     await this.page.setRequestInterception(true);
-    this.page.on('request', async interceptedRequest => {
+    this.page.on('request', async (interceptedRequest: Request) => {
       if (interceptedRequest.url().endsWith('.png')
           || interceptedRequest.url().endsWith('.jpg')
           || interceptedRequest.url().includes('/o.htm')
           || interceptedRequest.url().includes('/s.htm')
-      )
+      ) {
         await interceptedRequest.abort();
-      else
+      } else {
         await interceptedRequest.continue();
+      }
     });
     await this.goPage(1);
     await this.browser.close();
