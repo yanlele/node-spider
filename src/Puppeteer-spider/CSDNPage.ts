@@ -13,7 +13,7 @@ class CSDNPage {
   constructor() {
     this.page = null;
     this.browser = null;
-    this.filePath = resolve(__dirname, './csdnPage.html')
+    this.filePath = resolve(__dirname, './csdnPage.html');
     this.userAgent = new UserAgent({
       deviceCategory: 'desktop'
     }).toString();
@@ -23,8 +23,14 @@ class CSDNPage {
     let fileData: string = '';
     try {
       fileData = readFileSync(this.filePath, 'utf8');
-      console.log(fileData);
-      console.log('处理filData');
+      const $: CheerioStatic = load(fileData);
+      // console.log($('body > div.main-container > div.con-l > div.search-list-con > dl:nth-child(1) > dt > div > a:nth-child(1)').text());
+
+      const dlList = $('div.main-container > div.con-l > div.search-list-con > dl');
+      dlList.each((index, element) => {
+        console.log('title', $(element).find('dt > div > a:nth-child(1)').text());
+        console.log('url', $(element).find('dt > div > a:nth-child(1)').attr('href'));
+      });
     } catch (e) {
       this.main();
     }
@@ -35,7 +41,7 @@ class CSDNPage {
       timeout: 15000,
       ignoreHTTPSErrors: true,
       devtools: false,
-      headless: false,
+      headless: true,
       slowMo: 100,
       defaultViewport: {
         width: 1100,
@@ -48,14 +54,11 @@ class CSDNPage {
     await this.page.goto('https://so.csdn.net/so/search/s.do?p=1&q=puppeteer');
     await this.page.waitForSelector('.main-container');
     const htmlString: string = await this.page.evaluate(() => document.body.innerHTML);
-    const $ = load(htmlString);
-    const a: any = $('body > div.main-container > div.con-l > div.search-list-con > dl.J_search > dt > div > a');
-
-    writeFile(this.filePath, a, 'utf8', () => console.log('success'));
+    writeFile(this.filePath, htmlString, 'utf8', () => console.log('write file success'));
 
     await this.browser.close();
   }
 }
 
-const login: CSDNPage = new CSDNPage();
-login.file();
+const page: CSDNPage = new CSDNPage();
+page.file();
