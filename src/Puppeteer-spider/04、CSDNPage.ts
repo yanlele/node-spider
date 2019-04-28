@@ -45,8 +45,8 @@ class CSDNPage {
   async main() {
     this.browser = await launch({
       timeout: 15000, // 浏览器启动时间
-      devtools: true,
-      headless: false,
+      devtools: false,
+      headless: true,
       slowMo: 100,
       defaultViewport: {
         width: 1100,
@@ -75,6 +75,7 @@ class CSDNPage {
     });
     await this.goPage(1);
     await this.browser.close();
+    this.file();
   }
 
   async goPage(pageSize: number, search: string = 'jest') {
@@ -85,7 +86,7 @@ class CSDNPage {
     writeFile(this.filePath, htmlString, {
       encoding: 'utf8',
       flag: 'a'
-    }, () => console.log('write file success'));
+    }, () => console.log(`search page index: ${pageSize} - write file success`));
 
     const $: CheerioStatic = load(htmlString);
     const $next = $('div.csdn-pagination.hide-set > span > a.btn.btn-xs.btn-default.btn-next').length;
