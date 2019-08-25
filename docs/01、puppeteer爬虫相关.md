@@ -49,7 +49,7 @@ this.page.on('request', async interceptedRequest => {
 - [puppeteer的简单使用_爬取页面信息](https://segmentfault.com/a/1190000013037078)
 - [puppeteer进阶版_爬取小说站](https://segmentfault.com/a/1190000013055389)
 - [Puppeteer拦截某条url并返回其响应内容(场景和方法) API RequestInterception拦截器的使用](https://blog.csdn.net/m0_37089544/article/details/82225408)
-
+- [puppeteer + socket.io 模拟登录并切换账号](https://github.com/AnnVoV/blog/issues/19)
 
 
 - 值得推荐的headless模块                         
